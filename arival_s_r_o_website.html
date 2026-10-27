@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="sk" class="scroll-smooth">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>ARIVAL s. r. o. | Stavebná Činnosť a Projektovanie</title>
+ <meta id="meta-desc" name="description" content="Profesionálna stavebná činnosť, inžinierske a architektonické projektovanie, kompletná realizácia stavieb v Bratislave a okolí.">
+ 
+ <script src="https://cdn.tailwindcss.com"></script>
+ <script src="https://unpkg.com/lucide@latest"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+
+ <script>
+ tailwind.config = {
+ darkMode: 'class', 
+ theme: { 
+ extend: { 
+ colors: { 
+ brand: { 
+ primary: '#2563eb',
+ secondary: '#0f172a',
+ accent: '#00f0ff'
+ } 
+ } 
+ } 
+ }
+ }
+ </script>
+
+ <script type="application/ld+json" id="semantic-graph">
+ {
+ "identity": {
+ "name": "ARIVAL",
+ "legalName": "ARIVAL s. r. o.",
+ "ico": "57905908",
+ "phone": "+421 900 000 000",
+ "email": "info@arival.sk"
+ },
+ "registry": {
+ "vatNumber": "2123329692",
+ "vatStatus": "Neplátca DPH / Non-VAT Registered",
+ "registrar": "Mestský súd Bratislava III, Oddiel: Sro, Vložka č. 204336/B",
+ "facebook": "https://facebook.com/arivalsro",
+ "partners": [
+ "Ing. Roman Pejchal",
+ "Stavební Partneri BA",
+ "Tech-Services Slovakia"
+ ]
+ },
+ "theme": {
+ "animation": {
+ "effect": "NET",
+ "baseColor": "#00f0ff",
+ "bgLight": "#f8fafc",
+ "bgDark": "#0f172a"
+ }
+ },
+ "languages": {
+ "LANG1": { 
+ "code": "sk", 
+ "label": "Slovensky", 
+ "content": {
+ "SEO": {
+ "TITLE": "ARIVAL s. r. o. | Stavebná Činnosť & Projektovanie",
+ "DESC": "Komplexná stavebná činnosť, inžinierske projektovanie, realizácia rodinných domov a komerčných stavieb."
+ },
+ "HERO": {
+ "H1": "Inovatívne projektovanie a precízna stavebná realizácia",
+ "P": "Špecializujeme sa na inžiniersku činnosť, architektonické projektovanie a kompletné zhotovenie stavebných projektov od základov po kolaudáciu."
+ },
+ "SERVICES_TITLE": "Stavebné a Projektové Služby",
+ "SERVICES": [
+ {
+ "TITLE": "Projektová Činnosť a Inžiniering",
+ "DESC": "Vypracovanie architektonických štúdií, projektovej dokumentácie pre stavebné povolenie a inžinierska činnosť.",
+ "ICON": "compass"
+ },
+ {
+ "TITLE": "Realizácia Novostavieb a Domov",
+ "DESC": "Kompletné stavebné práce pri výstavbe rodinných domov, polyfunkčných objektov a priemyselných budov.",
+ "ICON": "building"
+ },
+ {
+ "TITLE": "Rekonštrukcie a Dokončovacie Práce",
+ "DESC": "Špeciálne stavebné zmeny, modernizácia priestorov, obklady, fasády a interiérový dokončovací inžiniering.",
+ "ICON": "hard-hat"
+ }
+ ],
+ "UI": {
+ "REGISTRY_TITLE": "Firemné Údaje & Certifikácia",
+ "LBL_LEGAL": "Právne Údaje",
+ "LBL_NAME": "Obchodné Meno",
+ "LBL_ECO": "Registračné Informácie",
+ "LBL_REGISTRAR": "Zápis v Registri",
+ "LBL_PARTNERS": "Kľúčoví Partneri & Inžinieri"
+ }
+ }
+ },
+ "LANG2": { 
+ "code": "en", 
+ "label": "English", 
+ "content": {
+ "SEO": {
+ "TITLE": "ARIVAL s. r. o. | Construction & Structural Projecting",
+ "DESC": "Comprehensive construction services, engineering project design, building execution, and technical site management."
+ },
+ "HERO": {
+ "H1": "Innovative Architectural Projecting & Expert Construction",
+ "P": "Delivering end-to-end structural engineering, architectural blueprints, and full-scale building construction tailored to your needs."
+ },
+ "SERVICES_TITLE": "Construction & Engineering Services",
+ "SERVICES": [
+ {
+ "TITLE": "Structural & Architectural Projecting",
+ "DESC": "Preparation of architectural studies, structural design, zoning permits, and technical project planning.",
+ "ICON": "compass"
+ },
+ {
+ "TITLE": "General Building Construction",
+ "DESC": "Turnkey construction of residential buildings, commercial spaces, and industrial facilities with precision.",
+ "ICON": "building"
+ },
+ {
+ "TITLE": "Renovations & Structural Finishing",
+ "DESC": "Building modernizations, facade installations, interior architectural integration, and site preparation works.",
+ "ICON": "hard-hat"
+ }
+ ],
+ "UI": {
+ "REGISTRY_TITLE": "Corporate & Engineering Registry",
+ "LBL_LEGAL": "Legal Details",
+ "LBL_NAME": "Legal Name",
+ "LBL_ECO": "Registry Data",
+ "LBL_REGISTRAR": "Registered At",
+ "LBL_PARTNERS": "Key Partners & Engineers"
+ }
+ }
+ }
+ },
+ "components": [
+ { "id": "hero_01", "type": "HERO" },
+ { "id": "services_01", "type": "SERVICES" },
+ { "id": "registry_01", "type": "COMPANY_DATA" }
+ ]
+ }
+ </script>
+</head>
+
+<body class="text-slate-900 dark:text-white transition-colors duration-500 overflow-x-hidden relative min-h-screen font-sans bg-slate-50 dark:bg-slate-950">
+
+ <!-- Dynamic Animated Background Canvas -->
+ <div id="vanta-bg" class="fixed inset-0 z-0 pointer-events-none transition-opacity duration-700 opacity-60 dark:opacity-40"></div>
+
+ <div id="app-root" class="relative z-10 flex flex-col min-h-screen">
+  <!-- Top Navigation -->
+  <header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+   <div class="container mx-auto px-6 h-20 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+     <div class="p-2.5 bg-blue-600 text-white rounded-xl shadow-lg shadow-blue-500/30">
+      <i data-lucide="ruler" class="w-6 h-6"></i>
+     </div>
+     <div class="flex flex-col">
+      <span class="text-2xl font-black text-slate-900 dark:text-white tracking-tight leading-none">ARIVAL</span>
+      <span class="text-xs font-semibold text-blue-600 dark:text-blue-400 tracking-wider uppercase mt-1">Stavebná a Projektová Činnosť</span>
+     </div>
+    </div>
+    
+    <div class="flex items-center gap-4">
+     <button id="theme-toggle" aria-label="Toggle theme" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+      <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+      <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
+     </button>
+     <div class="flex gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl" id="lang-switcher"></div>
+    </div>
+   </div>
+  </header>
+
+  <!-- Dynamic Content Mount point -->
+  <main id="main-mount" class="flex-grow transition-all duration-300"></main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 backdrop-blur-md py-8">
+   <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+    <p class="text-sm text-slate-500 dark:text-slate-400">
+     &copy; <span id="current-year"></span> ARIVAL s. r. o. Všetky práva vyhradené. Stavebná činnosť a projektovanie.
+    </p>
+    <div class="flex items-center gap-6 text-sm text-slate-500 dark:text-slate-400">
+     <span>IČO: 57905908</span>
+     <span>Bratislava, Slovensko</span>
+    </div>
+   </div>
+  </footer>
+ </div>
+
+ <!-- Structural Section Templates -->
+ <template id="tpl-hero">
+  <section class="relative py-24 md:py-32 flex items-center justify-center">
+   <div class="container mx-auto px-6 max-w-4xl text-center">
+    <div class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800 p-8 md:p-14 rounded-3xl shadow-2xl transition-all">
+     <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800 text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-wider mb-6">
+      <i data-lucide="hard-hat" class="w-4 h-4"></i> Certifikované Stavebné Projekty
+     </div>
+     <h1 class="text-4xl md:text-6xl font-black mb-6 tracking-tight text-slate-900 dark:text-white leading-tight">{{H1}}</h1>
+     <p class="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-10 leading-relaxed max-w-2xl mx-auto">{{P}}</p>
+     <div class="flex flex-wrap items-center justify-center gap-4">
+      <a href="tel:{{PHONE}}" class="inline-flex items-center gap-3 text-white font-semibold bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-2xl shadow-lg shadow-blue-500/25 transition-all transform hover:-translate-y-0.5">
+       <i data-lucide="phone-call" class="w-5 h-5"></i><span>{{PHONE}}</span>
+      </a>
+      <a href="#services_01" class="inline-flex items-center gap-2 text-slate-700 dark:text-slate-200 font-semibold bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 px-8 py-4 rounded-2xl transition-all">
+       <i data-lucide="blueprint" class="w-5 h-5"></i><span>Prezrieť služby</span>
+      </a>
+     </div>
+    </div>
+   </div>
+  </section>
+ </template>
+
+ <template id="tpl-services">
+  <section id="services_01" class="py-20 bg-slate-100/50 dark:bg-slate-900/40">
+   <div class="container mx-auto px-6">
+    <div class="text-center mb-16">
+     <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight inline-block relative pb-3 border-b-4 border-blue-600">
+      {{SECTION_TITLE}}
+     </h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8" id="services-grid-[ID]"></div>
+   </div>
+  </section>
+ </template>
+
+ <template id="tpl-registry">
+  <section class="py-20">
+   <div class="container mx-auto px-6 max-w-5xl">
+    <div class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800 rounded-3xl shadow-xl p-8 md:p-12 transition-all">
+     <div class="flex items-center gap-4 mb-8 pb-6 border-b border-slate-200 dark:border-slate-800">
+      <div class="p-3 bg-blue-600/10 text-blue-600 dark:text-blue-400 rounded-2xl">
+       <i data-lucide="building-2" class="w-8 h-8"></i>
+      </div>
+      <div>
+       <h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">{{REGISTRY_TITLE}}</h2>
+       <p class="text-sm text-slate-500 dark:text-slate-400">Oficiálny opis spoločnosti a oprávnení na stavebnú činnosť</p>
+      </div>
+     </div>
+     
+     <div class="grid md:grid-cols-2 gap-x-12 gap-y-8">
+      <div class="space-y-4">
+       <h3 class="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">{{LBL_LEGAL}}</h3>
+       <ul class="space-y-3">
+        <li class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-2.5">
+         <span class="text-slate-500 dark:text-slate-400 text-sm">{{LBL_NAME}}</span>
+         <span class="font-bold text-slate-900 dark:text-white text-sm">{{LEGAL_NAME}}</span>
+        </li>
+        <li class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-2.5">
+         <span class="text-slate-500 dark:text-slate-400 text-sm">IČO</span>
+         <span class="font-mono font-bold text-slate-900 dark:text-white text-sm">{{ICO}}</span>
+        </li>
+        <li class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-2.5">
+         <span class="text-slate-500 dark:text-slate-400 text-sm">DIČ / DPH</span>
+         <div class="text-right">
+          <span class="font-mono font-medium text-slate-900 dark:text-white text-sm block">{{VAT_NUMBER}}</span>
+          <span class="text-[10px] uppercase tracking-wider bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 px-2 py-0.5 rounded font-bold">{{VAT_STATUS}}</span>
+         </div>
+        </li>
+        <li class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-2.5">
+         <span class="text-slate-500 dark:text-slate-400 text-sm">Sociálne Siete</span>
+         <a href="{{FACEBOOK}}" target="_blank" class="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 text-sm flex items-center gap-1">
+          <i data-lucide="facebook" class="w-4 h-4"></i> Profile
+         </a>
+        </li>
+       </ul>
+      </div>
+
+      <div class="space-y-4">
+       <h3 class="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">{{LBL_ECO}}</h3>
+       <ul class="space-y-3">
+        <li class="flex justify-between items-start border-b border-slate-100 dark:border-slate-800 pb-2.5">
+         <span class="text-slate-500 dark:text-slate-400 text-sm shrink-0">{{LBL_REGISTRAR}}</span>
+         <span class="font-medium text-right text-xs text-slate-800 dark:text-slate-200 max-w-[65%] leading-relaxed">{{REGISTRAR}}</span>
+        </li>
+       </ul>
+       <div class="pt-4">
+        <h3 class="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest mb-3">{{LBL_PARTNERS}}</h3>
+        <div class="flex flex-wrap gap-2" id="partners-[ID]"></div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+ </template>
+
+ <script>
+ const Engine = {
+  state: 'LANG1', 
+  vantaInstance: null,
+  graph: JSON.parse(document.getElementById('semantic-graph').text),
+
+  init: function() {
+   document.getElementById('current-year').textContent = new Date().getFullYear();
+   this.initTheme();
+   this.initVanta();
+   this.renderSwitcher();
+   this.render();
+  },
+
+  initTheme: function() {
+   const toggleBtn = document.getElementById('theme-toggle');
+   toggleBtn.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+    this.updateVantaTheme();
+   });
+  },
+
+  initVanta: function() {
+   if (typeof VANTA === 'undefined' || !VANTA.NET) return;
+   
+   const isDark = document.documentElement.classList.contains('dark');
+   const anim = this.graph.theme.animation;
+   
+   try {
+    this.vantaInstance = VANTA.NET({
+     el: "#vanta-bg",
+     mouseControls: true,
+     touchControls: true,
+     gyroControls: false,
+     minHeight: 200.00,
+     minWidth: 200.00,
+     scale: 1.00,
+     scaleMobile: 1.00,
+     color: parseInt(anim.baseColor.replace('#', '0x'), 16),
+     backgroundColor: parseInt((isDark ? anim.bgDark : anim.bgLight).replace('#', '0x'), 16),
+     points: 12.00,
+     maxDistance: 22.00,
+     spacing: 18.00
+    });
+   } catch(e) {
+    console.error("Vanta initialization error:", e);
+   }
+  },
+
+  updateVantaTheme: function() {
+   if (!this.vantaInstance) return;
+   const isDark = document.documentElement.classList.contains('dark');
+   const anim = this.graph.theme.animation;
+   this.vantaInstance.setOptions({
+    backgroundColor: parseInt((isDark ? anim.bgDark : anim.bgLight).replace('#', '0x'), 16)
+   });
+  },
+
+  renderSwitcher: function() {
+   const container = document.getElementById('lang-switcher');
+   container.innerHTML = '';
+   
+   Object.keys(this.graph.languages).forEach(key => {
+    const lang = this.graph.languages[key];
+    const btn = document.createElement('button');
+    btn.className = `px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+     this.state === key 
+      ? 'bg-blue-600 text-white shadow' 
+      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+    }`;
+    btn.textContent = lang.label;
+    btn.onclick = () => {
+     this.state = key;
+     this.renderSwitcher();
+     this.render();
+    };
+    container.appendChild(btn);
+   });
+  },
+
+  render: function() {
+   const mount = document.getElementById('main-mount');
+   mount.innerHTML = '';
+   
+   const langData = this.graph.languages[this.state].content;
+   const identity = this.graph.identity;
+   const registry = this.graph.registry;
+
+   // Update Page Meta
+   document.title = langData.SEO.TITLE;
+   document.getElementById('meta-desc').setAttribute('content', langData.SEO.DESC);
+
+   this.graph.components.forEach(comp => {
+    if (comp.type === 'HERO') {
+     const tpl = document.getElementById('tpl-hero').innerHTML;
+     const rendered = tpl
+      .replace('{{H1}}', langData.HERO.H1)
+      .replace('{{P}}', langData.HERO.P)
+      .replace('{{PHONE}}', identity.phone);
+     
+     const div = document.createElement('div');
+     div.innerHTML = rendered;
+     mount.appendChild(div);
+    } 
+    else if (comp.type === 'SERVICES') {
+     const tpl = document.getElementById('tpl-services').innerHTML;
+     const rendered = tpl
+      .replace('{{SECTION_TITLE}}', langData.SERVICES_TITLE)
+      .replace('[ID]', comp.id);
+     
+     const div = document.createElement('div');
+     div.innerHTML = rendered;
+     mount.appendChild(div);
+
+     const grid = document.getElementById(`services-grid-${comp.id}`);
+     langData.SERVICES.forEach(service => {
+      const card = document.createElement('div');
+      card.className = "bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col items-start";
+      
+      let iconName = service.ICON || 'hard-hat';
+      if(iconName === 'laptop') iconName = 'compass';
+      if(iconName === 'megaphone') iconName = 'building';
+      if(iconName === 'hammer') iconName = 'hard-hat';
+
+      card.innerHTML = `
+       <div class="p-4 bg-blue-600/10 text-blue-600 dark:text-blue-400 rounded-2xl mb-6">
+        <i data-lucide="${iconName}" class="w-8 h-8"></i>
+       </div>
+       <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">${service.TITLE}</h3>
+       <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">${service.DESC}</p>
+      `;
+      grid.appendChild(card);
+     });
+    }
+    else if (comp.type === 'COMPANY_DATA') {
+     const tpl = document.getElementById('tpl-registry').innerHTML;
+     const rendered = tpl
+      .replace('{{REGISTRY_TITLE}}', langData.UI.REGISTRY_TITLE)
+      .replace('{{LBL_LEGAL}}', langData.UI.LBL_LEGAL)
+      .replace('{{LBL_NAME}}', langData.UI.LBL_NAME)
+      .replace('{{LEGAL_NAME}}', identity.legalName)
+      .replace('{{ICO}}', identity.ico)
+      .replace('{{VAT_NUMBER}}', registry.vatNumber)
+      .replace('{{VAT_STATUS}}', registry.vatStatus)
+      .replace('{{FACEBOOK}}', registry.facebook)
+      .replace('{{LBL_ECO}}', langData.UI.LBL_ECO)
+      .replace('{{LBL_REGISTRAR}}', langData.UI.LBL_REGISTRAR)
+      .replace('{{REGISTRAR}}', registry.registrar)
+      .replace('{{LBL_PARTNERS}}', langData.UI.LBL_PARTNERS)
+      .replace('[ID]', comp.id);
+
+     const div = document.createElement('div');
+     div.innerHTML = rendered;
+     mount.appendChild(div);
+
+     const partnersContainer = document.getElementById(`partners-${comp.id}`);
+     registry.partners.forEach(partner => {
+      const tag = document.createElement('span');
+      tag.className = "px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 flex items-center gap-1.5";
+      tag.innerHTML = `<i data-lucide="user-check" class="w-3.5 h-3.5 text-blue-600"></i> ${partner}`;
+      partnersContainer.appendChild(tag);
+     });
+    }
+   });
+
+   // Re-initialize Lucide Icons
+   if (window.lucide) {
+    lucide.createIcons();
+   }
+  }
+ };
+
+ window.onload = function() {
+  Engine.init();
+ };
+ </script>
+</body>
+</html>
